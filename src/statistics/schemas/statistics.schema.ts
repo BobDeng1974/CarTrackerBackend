@@ -2,7 +2,7 @@ import { Document } from 'mongoose';
 import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
 
 @Schema()
-export class Statistics extends Document {
+export class Statistic extends Document {
     @Prop({ required: true })
     date: Date;
 
@@ -16,4 +16,4 @@ export class Statistics extends Document {
     overspeed: number;
 }
 
-export const StatisticsSchema = SchemaFactory.createForClass(Statistics);
+export const StatisticSchema = SchemaFactory.createForClass(Statistic);

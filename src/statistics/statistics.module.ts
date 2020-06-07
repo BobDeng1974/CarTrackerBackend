@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
-import { StatisticsController } from './controller/statistics.controller';
-import { StatisticsService } from './service/statistics.service';
+import { StatisticController } from './controller/statistics.controller';
+import { StatisticService } from './service/statistics.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Statistics, StatisticsSchema } from './schemas/statistics.schema';
+import { Statistic, StatisticSchema } from './schemas/statistics.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Statistics.name, schema: StatisticsSchema }])],
-  controllers: [StatisticsController],
-  providers: [StatisticsService],
+  imports: [
+    MongooseModule.forFeature([{ name: Statistic.name, schema: StatisticSchema }]),
+  ],
+  controllers: [StatisticController],
+  providers: [StatisticService],
 })
 export class StatisticsModule {}
