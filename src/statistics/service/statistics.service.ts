@@ -24,7 +24,7 @@ export class StatisticService {
     return createdStat.save();
   }
 
-  async getAll(): Promise<Statistic[]> {
-    return this.statisticModel.find().exec();
+  async getAll(skip: number, limit: number): Promise<Statistic[]> {
+    return this.statisticModel.find().skip(Number(skip)).limit(Number(limit)).exec();
   }
 }

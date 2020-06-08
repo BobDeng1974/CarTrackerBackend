@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query } from '@nestjs/common';
 import { StatisticService } from '../service/statistics.service';
 import { Statistic } from '../schemas/statistics.schema';
 import { ICreateStatisticsDto } from '../dto/statistics.dto';
@@ -15,7 +15,7 @@ export class StatisticController {
   }
 
   @Get()
-  getAll(): Promise<Statistic[]> {
-    return this.statisticService.getAll();
+  getAll(@Query('skip') skip: number, @Query('limit') limit: number): Promise<Statistic[]> {
+    return this.statisticService.getAll(skip, limit);
   }
 }
