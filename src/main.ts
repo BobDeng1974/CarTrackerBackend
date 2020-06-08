@@ -9,7 +9,6 @@ async function bootstrap() {
     transport: Transport.MQTT,
     options: { retryAttempts: 5, retryDelay: 1000 },
   });
-  require('dotenv').config();
   await app.listen(3000);
 }
 bootstrap();

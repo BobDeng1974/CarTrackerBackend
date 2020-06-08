@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query, ValidationPipe } from '@nestjs/common';
 import { StatisticService } from '../service/statistics.service';
 import { Statistic } from '../schemas/statistics.schema';
 import { ICreateStatisticsDto } from '../dto/statistics.dto';
@@ -10,7 +10,7 @@ export class StatisticController {
   ) {}
 
   @Post()
-  create(@Body() statistic: ICreateStatisticsDto): Promise<Statistic> {
+  create(@Body(new ValidationPipe()) statistic: ICreateStatisticsDto): Promise<Statistic> {
     return this.statisticService.create(statistic);
   }
 
