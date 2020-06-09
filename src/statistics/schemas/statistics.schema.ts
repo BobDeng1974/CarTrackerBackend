@@ -1,19 +1,20 @@
-import { Document } from 'mongoose';
-import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
+import { prop, Ref, modelOptions } from '@typegoose/typegoose';
+import { Vehicle } from '../../vehicle/schemas/vehicle.schema';
 
-@Schema()
-export class Statistic extends Document {
-    @Prop({ required: true })
-    date: Date;
+@modelOptions({ schemaOptions: { toJSON: { virtuals: true }, toObject: { virtuals: true } }})
+export class Statistic {
+    @prop({ required: true })
+    date!: Date;
 
-    @Prop({ required: true })
-    address: string;
+    @prop({ required: true })
+    address!: string;
 
-    @Prop({ required: true })
-    carData: string;
+    @prop({ required: true })
+    carData!: string;
 
-    @Prop({ required: true })
-    overspeed: number;
+    @prop({ required: true })
+    overspeed!: number;
+
+    @prop({ required: true, ref: () => Vehicle })
+    vehicle?: Ref<Vehicle>;
 }
-
-export const StatisticSchema = SchemaFactory.createForClass(Statistic);

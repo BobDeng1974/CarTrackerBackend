@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { MongooseOptionsFactory, MongooseModuleOptions  } from '@nestjs/mongoose';
+import { TypegooseOptionsFactory, TypegooseModuleOptions } from 'nestjs-typegoose';
 
 @Injectable()
-export class MongoConfigService implements MongooseOptionsFactory {
-    createMongooseOptions(): MongooseModuleOptions {
+export class MongoConfigService implements TypegooseOptionsFactory {
+    createTypegooseOptions(): TypegooseModuleOptions {
         return {
-          uri: 'mongodb://localhost/car-tracker',
+          uri: process.env.MONG_DB_URI,
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useCreateIndex: true
         };
     }
 }

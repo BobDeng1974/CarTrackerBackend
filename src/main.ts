@@ -9,6 +9,6 @@ async function bootstrap() {
     transport: Transport.MQTT,
     options: { retryAttempts: 5, retryDelay: 1000 },
   });
-  await app.listen(3000);
+  await app.listen(3000, '0.0.0.0');
 }
 bootstrap();
