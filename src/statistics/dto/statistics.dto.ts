@@ -17,4 +17,8 @@ export class ICreateStatisticsDto {
     @IsPositive()
     @IsNotEmpty()
     readonly overspeed: number;
+
+    @IsString()
+    @IsNotEmpty()
+    readonly vehicle: string;
 }
