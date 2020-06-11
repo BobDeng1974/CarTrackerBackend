@@ -1,4 +1,4 @@
-import { prop, Ref, arrayProp, modelOptions } from '@typegoose/typegoose';
+import { prop, Ref, modelOptions } from '@typegoose/typegoose';
 import { Statistic } from '../../statistics/schemas/statistics.schema';
 
 @modelOptions({ schemaOptions: { toJSON: { virtuals: true }, toObject: { virtuals: true } }})

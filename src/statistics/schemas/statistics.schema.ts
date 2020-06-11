@@ -10,9 +10,6 @@ export class Statistic {
     address!: string;
 
     @prop({ required: true })
-    carData!: string;
-
-    @prop({ required: true })
     overspeed!: number;
 
     @prop({ required: true, ref: () => Vehicle })

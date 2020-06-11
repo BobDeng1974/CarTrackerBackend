@@ -2,13 +2,11 @@ import {
   Controller,
   Post,
   Body,
-  Get,
-  Query,
   ValidationPipe
 } from '@nestjs/common';
 import { StatisticService } from '../service/statistics.service';
 import { Statistic } from '../schemas/statistics.schema';
-import { ICreateStatisticsDto } from '../dto/statistics.dto';
+import { CreateStatisticsDto } from '../dto/statistics.dto';
 
 @Controller('statistics')
 export class StatisticController {
@@ -16,17 +14,8 @@ export class StatisticController {
 
   @Post()
   create(
-    @Body(new ValidationPipe()) statistic: ICreateStatisticsDto,
+    @Body(new ValidationPipe()) statistic: CreateStatisticsDto,
   ): Promise<Statistic> {
     return this.statisticService.create(statistic);
-  }
-
-  @Get()
-  getAll(
-    @Query('skip') skip: number,
-    @Query('limit') limit: number,
-    @Query('vehicleId') vehicleId: string,
-  ): Promise<Statistic[]> {
-    return this.statisticService.getAll(skip, limit, vehicleId);
   }
 }
