@@ -12,6 +12,11 @@ export class VehicleController {
     return this.vehicleService.create(vehicle);
   }
 
+  @Post('/location')
+  pushLocation(@Body() location: any): void {
+    this.vehicleService.sendLocation(location);
+  }
+
   @Get()
   async getAll(): Promise<Vehicle[]> {
     return this.vehicleService.getAll();

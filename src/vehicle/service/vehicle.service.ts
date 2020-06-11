@@ -3,7 +3,15 @@ import { InjectModel } from 'nestjs-typegoose';
 import { Vehicle } from '../schemas/vehicle.schema';
 import { ReturnModelType } from '@typegoose/typegoose';
 import { CreateVehicleDto } from '../dto/vehicle.dto';
+import * as Pusher from 'pusher';
 
+const pusher = new Pusher({
+    appId: '613693',
+    key: '1f420441a89d17034c56',
+    secret: '28ae3191a367fd354ade',
+    cluster: 'eu',
+    useTLS: true
+  });
 @Injectable()
 export class VehicleService {
     constructor(
@@ -29,5 +37,9 @@ export class VehicleService {
                 sort: { date: 'desc'}
             }
         }).exec();
+    }
+
+    sendLocation(location: any): void {
+        pusher.trigger('vehicle', 'vehicle_location', location);
     }
 }

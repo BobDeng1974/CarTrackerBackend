@@ -33,6 +33,7 @@
     "mongoose": "^5.9.18",
     "mqtt": "^4.1.0",
     "nestjs-typegoose": "^7.1.26",
+    "pusher": "^3.0.1",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.5.5",
