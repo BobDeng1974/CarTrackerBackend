@@ -1,7 +1,8 @@
-import { Controller, Post, Body, Get, Query, ValidationPipe } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query, ValidationPipe, HttpCode } from '@nestjs/common';
 import { VehicleService } from '../service/vehicle.service';
 import { Vehicle } from '../schemas/vehicle.schema';
 import { CreateVehicleDto } from '../dto/vehicle.dto';
+import { LoginVehicleDto } from '../dto/login-vehicle.dto';
 
 @Controller('vehicle')
 export class VehicleController {
@@ -15,6 +16,12 @@ export class VehicleController {
   @Post('/location')
   pushLocation(@Body() location: any): void {
     this.vehicleService.sendLocation(location);
+  }
+
+  @Post('/login')
+  @HttpCode(200)
+  async loginVehicle(@Body(new ValidationPipe()) vehicle: LoginVehicleDto): Promise<Vehicle> {
+    return this.vehicleService.loginVehicle(vehicle);
   }
 
   @Get()
