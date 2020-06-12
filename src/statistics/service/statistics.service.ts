@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Statistic } from '../schemas/statistics.schema';
 import { Transport, ClientProxy, Client } from '@nestjs/microservices';
 import { ReturnModelType } from '@typegoose/typegoose';
@@ -18,6 +18,7 @@ export class StatisticService {
     },
   })
   private readonly client: ClientProxy;
+  private readonly logger = new Logger('DTC_MICROSERVICE');
 
   constructor(
     @InjectModel(Statistic)
@@ -26,7 +27,9 @@ export class StatisticService {
 
   async create(statistic: CreateStatisticsDto): Promise<Statistic> {
     const createdStat = new this.statisticModel(statistic);
-    this.client.send<string, string>(process.env.DTC_SERVICE_TOPIC, process.env.DTC_CODE).subscribe();
+    this.client.send<string, string>(process.env.DTC_SERVICE_TOPIC, process.env.DTC_CODE).subscribe({
+      error: (error) => this.logger.error(error)
+    });
     return createdStat.save();
   }
 }

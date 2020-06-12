@@ -9,10 +9,6 @@ export class CreateStatisticsDto {
     @IsNotEmpty()
     readonly address: string;
 
-    @IsString()
-    @IsNotEmpty()
-    readonly carData: string;
-
     @IsInt()
     @IsPositive()
     @IsNotEmpty()
